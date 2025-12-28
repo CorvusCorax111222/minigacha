@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Mini Gacha</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Optional: Three.js for 3D Wish FX (Portal + Tunnel). If unavailable, the game falls back to 2D FX. -->
+  <script src="https://unpkg.com/three@0.160.0/build/three.min.js" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js';"></script>
+</head>
+
+<body>
+<header>
+  <div class="wrap">
+    <div class="top">
+      <div class="brand">
+        <div class="logo"><span class="logoMark">MG</span></div>
+        <div>
+          <h1 class="gameTitle">Mini Gacha</h1>
+          <div class="brandSub">Corvus Corax</div>
+          <div class="small muted">Idle income • DMG upgrade • Reward/CPS upgrades • SFX • Full Dex • Constellations • Ascension • BP • Weekly</div>
+        </div>
+      </div>
+
+      <div class="wallet">
+        <div class="pill">👤 <b id="playerName">Gość</b> <span class="muted">Lvl <b id="playerLevel">1</b></span></div>
+        <div class="pill">🪙 <b id="gold">0</b> <span class="muted">Gold</span></div>
+        <div class="pill">💎 <b id="gems">0</b> <span class="muted">Gems</span></div>
+        <div class="pill">🎟️ <b id="pulls">0</b> <span class="muted">Pulls</span></div>
+        <div class="pill">🧪 <b id="essence">0</b> <span class="muted">Essence</span></div>
+        <div class="pill">🔩 <b id="cores">0</b> <span class="muted">Cores</span></div>
+</div>
+    </div>
+
+    <div class="nav">
+      <div class="tab active" data-tab="banner">🎲 Banner</div>
+      <div class="tab" data-tab="collection">📚 Kolekcja & Team</div>
+      <div class="tab" data-tab="arena">⚔️ Arena</div>
+      <div class="tab" data-tab="pvp">🏟️ PvP Arena</div>
+            <div class="tab" data-tab="dungeon">🧱 Dungeon</div>
+      <div class="tab" data-tab="domains">🏛️ Domeny</div>
+      <div class="tab" data-tab="endgame">🏁 Endgame</div>
+<div class="tab" data-tab="quests"> Daily / BP / Weekly</div>
+      <div class="tab" data-tab="shop">🛒 Sklep</div>
+      <div class="tab" data-tab="profile" id="profileTabBtn">👤 <span id="profileTabName">Profil</span></div>
+      <div class="tab" data-tab="rebirth">♻️ Rebirth</div>
+            <div class="tab" data-tab="leaderboard">🏆 Leaderboard</div>
+<div class="tab" data-tab="settings">⚙️ Ustawienia</div>
+      <div class="tab" data-tab="notes">📝 Patch notes</div>
+    </div>
+    <div id="xmasLights" data-active="0" aria-hidden="true"></div>
+
+  </div>
+</header>
+
+<main>
+  <div class="grid">
+    <section class="card" id="viewLeft">
+      <div class="hd">
+        <h2 id="leftTitle">Banner</h2>
+        <div class="row">
+          <span class="tag" id="saveState">Zapis: OK</span>
+</div>
+      </div>
+      <div class="bd" id="leftBody"></div>
+    </section>
+
+    <aside class="card">
+      <div class="hd">
+        <h2>Status</h2>
+        <div class="row">
+</div>
+      </div>
+
+      <div class="bd">
+        <div class="kpi">
+          <div class="box">
+            <b id="kpiPity">0 / 90</b>
+            <span>Pity</span>
+          </div>
+          <div class="box">
+            <b id="kpiOwned">0</b>
+            <span>Unikalne posiadane</span>
+          </div>
+          <div class="box">
+            <b id="kpiPower">0</b>
+            <span>Team power</span>
+          </div>
+          <div class="box">
+            <b id="kpiPvpRank">-</b>
+            <span>Ranga PvP</span>
+          </div>
+        </div>
+
+        <div class="hr"></div>
+
+        <!--  tu będzie pokazywany status idle i ulepszeń -->
+        <div class="row" style="justify-content:space-between">
+          <div>
+            <b>Idle & Ulepszenia</b>
+            <div class="small muted" id="upgStatus">—</div>
+          </div>
+          <span class="tag" id="idleStatus">Idle: —</span>
+        </div>
+
+        <div class="hr"></div>
+
+        <div class="row" style="justify-content:space-between">
+          <div>
+            <b>Starter</b>
+            <div class="small muted">Jednorazowy boost do testów.</div>
+          </div>
+          <button class="btn" id="giveStarterBtn">Starter</button>
+        </div>
+
+        <div class="hr"></div>
+
+        <div class="small muted">
+          Tip: Idle daje stały przychód (Gold/Gems) zależny od teamu i ulepszeń.
+        </div>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<div class="toast" id="toast"></div>
+<div id="urFlash"></div>
+
+<div id="wishOverlay" aria-hidden="true"><canvas id="wishCanvas"></canvas><div id="wishLabel"></div></div>
+<script src="game.js" defer></script>
+
+  <script src="online_client.js" defer></script>
+
+<canvas id="snowCanvas" aria-hidden="true"></canvas>
+<script src="effects.js" defer></script>
+
+</body>
+</html>
